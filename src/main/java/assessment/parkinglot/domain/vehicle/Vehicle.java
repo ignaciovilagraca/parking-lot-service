@@ -3,7 +3,9 @@ package assessment.parkinglot.domain.vehicle;
 import assessment.parkinglot.domain.spot.Spot;
 import java.util.ArrayList;
 import java.util.List;
+import lombok.EqualsAndHashCode;
 
+@EqualsAndHashCode
 public abstract class Vehicle implements Parkable {
     private final Integer id;
     private final List<Spot> parkingSpots =  new ArrayList<>();
@@ -16,7 +18,7 @@ public abstract class Vehicle implements Parkable {
     public List<Spot> park(List<Spot> availableSpots, List<Spot> usedSpots) {
         List<Spot> spotsToUse = calculateParkingSpots(availableSpots);
         if (!spotsToUse.isEmpty()) {
-            spotsToUse.forEach(Spot::occupy);
+            spotsToUse.forEach(spot -> spot.occupy(this));
             parkingSpots.addAll(spotsToUse);
             usedSpots.addAll(spotsToUse);
             availableSpots.removeAll(spotsToUse);

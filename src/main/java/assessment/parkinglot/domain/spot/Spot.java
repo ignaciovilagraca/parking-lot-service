@@ -3,6 +3,7 @@ package assessment.parkinglot.domain.spot;
 import assessment.parkinglot.domain.vehicle.Car;
 import assessment.parkinglot.domain.vehicle.Motorcycle;
 import assessment.parkinglot.domain.vehicle.Van;
+import assessment.parkinglot.domain.vehicle.Vehicle;
 
 public interface Spot {
     boolean canPark(Car car);
@@ -11,7 +12,7 @@ public interface Spot {
 
     boolean isAvailable();
 
-    void occupy();
+    void occupy(Vehicle vehicle);
 
     void liberate();
 

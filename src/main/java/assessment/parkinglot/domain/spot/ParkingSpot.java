@@ -1,5 +1,6 @@
 package assessment.parkinglot.domain.spot;
 
+import assessment.parkinglot.domain.vehicle.Vehicle;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 
@@ -7,21 +8,25 @@ import lombok.EqualsAndHashCode;
 @AllArgsConstructor
 public abstract class ParkingSpot implements Spot {
     private final Integer id;
-    private Boolean available;
+    private Vehicle vehicle;
 
-    @Override
-    public boolean isAvailable() {
-        return available;
+    public ParkingSpot(Integer id) {
+        this.id = id;
     }
 
     @Override
-    public void occupy() {
-        this.available = false;
+    public boolean isAvailable() {
+        return vehicle == null;
+    }
+
+    @Override
+    public void occupy(Vehicle vehicle) {
+        this.vehicle = vehicle;
     }
 
     @Override
     public void liberate() {
-        this.available = true;
+        this.vehicle = null;
     }
 
     @Override

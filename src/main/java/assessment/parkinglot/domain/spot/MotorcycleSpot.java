@@ -3,11 +3,16 @@ package assessment.parkinglot.domain.spot;
 import assessment.parkinglot.domain.vehicle.Car;
 import assessment.parkinglot.domain.vehicle.Motorcycle;
 import assessment.parkinglot.domain.vehicle.Van;
+import assessment.parkinglot.domain.vehicle.Vehicle;
 
 public class MotorcycleSpot extends ParkingSpot {
 
-    public MotorcycleSpot(Integer id, Boolean available) {
-        super(id, available);
+    public MotorcycleSpot(Integer id, Vehicle vehicle) {
+        super(id, vehicle);
+    }
+
+    public MotorcycleSpot(Integer id) {
+        super(id);
     }
 
     @Override

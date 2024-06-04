@@ -11,8 +11,8 @@ public class TemporaryUtils {
     public static List<Spot> initSpots() {
         //TODO I reduced the amount of spots to make testing edge cases easier
         //TODO Move this to a database
-        return new ArrayList<>(List.of(new MotorcycleSpot(1, true),
-                new CompactCarSpot(1, true),
-                new RegularSpot(1, true), new RegularSpot(2, true), new RegularSpot(3, true)));
+        return new ArrayList<>(List.of(new MotorcycleSpot(1),
+                new CompactCarSpot(1),
+                new RegularSpot(1), new RegularSpot(2), new RegularSpot(3)));
     }
 }
