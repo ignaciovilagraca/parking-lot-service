@@ -23,4 +23,9 @@ public abstract class ParkingSpot implements Spot {
     public void liberate() {
         this.available = true;
     }
+
+    @Override
+    public Integer id() {
+        return id;
+    }
 }

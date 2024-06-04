@@ -1,12 +1,12 @@
 package assessment.parkinglot;
 
-import assessment.parkinglot.domain.ParkingLot;
 import assessment.parkinglot.domain.spot.CompactCarSpot;
 import assessment.parkinglot.domain.spot.MotorcycleSpot;
 import assessment.parkinglot.domain.spot.RegularSpot;
 import assessment.parkinglot.domain.vehicle.Car;
 import assessment.parkinglot.domain.vehicle.Motorcycle;
 import assessment.parkinglot.domain.vehicle.Van;
+import assessment.parkinglot.usecases.ParkingLot;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -19,12 +19,7 @@ public class ParkingLotServiceTest {
 
     @BeforeEach
     void setUp() {
-        //TODO I reduced the amount of spots to make testing edge cases easier
-        parkingLot = new ParkingLot(
-                new MotorcycleSpot(1, true),
-                new CompactCarSpot(1, true),
-                new RegularSpot(1, true), new RegularSpot(2, true), new RegularSpot(3, true)
-        );
+        parkingLot = new ParkingLot();
     }
 
     @Test

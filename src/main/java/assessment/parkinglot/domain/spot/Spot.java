@@ -14,4 +14,6 @@ public interface Spot {
     void occupy();
 
     void liberate();
+
+    Integer id();
 }
