@@ -1,18 +1,14 @@
 package assessment.parkinglot.domain.spot;
 
 import assessment.parkinglot.domain.vehicle.Vehicle;
+import assessment.parkinglot.frameworks.web.spot.SpotDto;
+import java.util.UUID;
 import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
 
-@EqualsAndHashCode
 @AllArgsConstructor
 public abstract class ParkingSpot implements Spot {
-    private final Integer id;
-    private Vehicle vehicle;
-
-    public ParkingSpot(Integer id) {
-        this.id = id;
-    }
+    protected final UUID id;
+    protected Vehicle vehicle;
 
     @Override
     public boolean isAvailable() {
@@ -25,12 +21,22 @@ public abstract class ParkingSpot implements Spot {
     }
 
     @Override
-    public void liberate() {
+    public ParkingSpot liberate() {
         this.vehicle = null;
+        return this;
     }
 
     @Override
-    public Integer id() {
-        return id;
+    public SpotDto asDto() {
+        return SpotDto.builder()
+                .id(this.id)
+                .available(vehicle == null)
+                .build();
+    }
+
+    @Override
+    public boolean containsVehicle(UUID id) {
+        return this.vehicle != null && this.vehicle.getId().equals(id);
     }
 }
+

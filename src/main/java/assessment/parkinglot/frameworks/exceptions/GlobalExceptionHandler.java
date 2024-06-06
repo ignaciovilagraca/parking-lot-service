@@ -8,7 +8,11 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class GlobalExceptionHandler {
     @ExceptionHandler(InvalidVehicleTypeException.class)
-    public ResponseEntity<String> handleGlobalException(Exception ex) {
+    public ResponseEntity<String> handleGlobalException(InvalidVehicleTypeException ex) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
+    }
+    @ExceptionHandler(InvalidSpotTypeException.class)
+    public ResponseEntity<String> handleGlobalException(InvalidSpotTypeException ex) {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
     }
 }

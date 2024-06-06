@@ -1,16 +1,17 @@
 package assessment.parkinglot.domain.vehicle;
 
 import assessment.parkinglot.domain.spot.Spot;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 
 @EqualsAndHashCode
+@Getter
 public abstract class Vehicle implements Parkable {
-    private final Integer id;
-    private final List<Spot> parkingSpots =  new ArrayList<>();
+    protected final UUID id;
 
-    public Vehicle(Integer id) {
+    public Vehicle(UUID id) {
         this.id = id;
     }
 
@@ -19,19 +20,16 @@ public abstract class Vehicle implements Parkable {
         List<Spot> spotsToUse = calculateParkingSpots(availableSpots);
         if (!spotsToUse.isEmpty()) {
             spotsToUse.forEach(spot -> spot.occupy(this));
-            parkingSpots.addAll(spotsToUse);
-            usedSpots.addAll(spotsToUse);
-            availableSpots.removeAll(spotsToUse);
         }
         return spotsToUse;
     }
 
     @Override
-    public List<Spot> leave(List<Spot> availableSpots, List<Spot> usedSpots) {
-        parkingSpots.forEach(Spot::liberate);
-        availableSpots.addAll(parkingSpots);
-        usedSpots.removeAll(parkingSpots);
-        return parkingSpots;
+    public List<Spot> leave(List<Spot> usedSpots) {
+        return usedSpots.stream()
+                .filter(spot -> spot.containsVehicle(this.id))
+                .map(Spot::liberate)
+                .toList();
     }
 
     @Override

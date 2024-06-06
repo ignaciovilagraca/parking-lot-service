@@ -4,6 +4,9 @@ import assessment.parkinglot.domain.vehicle.Car;
 import assessment.parkinglot.domain.vehicle.Motorcycle;
 import assessment.parkinglot.domain.vehicle.Van;
 import assessment.parkinglot.domain.vehicle.Vehicle;
+import assessment.parkinglot.frameworks.database.spot.ParkingSpotEntity;
+import assessment.parkinglot.frameworks.web.spot.SpotDto;
+import java.util.UUID;
 
 public interface Spot {
     boolean canPark(Car car);
@@ -14,7 +17,11 @@ public interface Spot {
 
     void occupy(Vehicle vehicle);
 
-    void liberate();
+    Spot liberate();
 
-    Integer id();
+    SpotDto asDto();
+
+    ParkingSpotEntity asEntity();
+
+    boolean containsVehicle(UUID id);
 }

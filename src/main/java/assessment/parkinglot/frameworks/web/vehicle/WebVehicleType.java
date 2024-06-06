@@ -1,8 +1,8 @@
-package assessment.parkinglot.frameworks.web;
+package assessment.parkinglot.frameworks.web.vehicle;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public enum VehicleType {
+public enum WebVehicleType {
     @JsonProperty("motorcycle")
     MOTORCYCLE,
     @JsonProperty("car")
