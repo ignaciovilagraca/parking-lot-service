@@ -3,10 +3,8 @@ package assessment.parkinglot.domain.vehicle;
 import assessment.parkinglot.domain.spot.Spot;
 import java.util.List;
 import java.util.UUID;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
-@EqualsAndHashCode
 @Getter
 public abstract class Vehicle implements Parkable {
     protected final UUID id;

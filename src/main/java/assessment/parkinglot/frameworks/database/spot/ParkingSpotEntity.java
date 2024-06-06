@@ -11,13 +11,13 @@ import jakarta.persistence.Table;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "parking_spot")
-@Data
 @Builder
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 public class ParkingSpotEntity {
